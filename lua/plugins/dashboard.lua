@@ -10,7 +10,7 @@ return {
        ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝           
   ]]
 
-    logo = string.rep("\n", 8) .. logo .. "\n\n"
+    logo = string.rep("\n", 6) .. logo .. "\n\n"
 
     local opts = {
       theme = "doom",
@@ -23,12 +23,13 @@ return {
         header = vim.split(logo, "\n"),
         -- stylua: ignore
         center = {
-          { action = function() require("fzf-lua").files({ cwd = LazyVim.root() }) end,                 desc = " Find File",       icon = " ", key = "f" },
+          { action = function() require("fzf-lua").files({ cwd = vim.loop.cwd() }) end,
+                                                                    desc = " Find File",       icon = " ", key = "f" },
           { action = "ene | startinsert",                           desc = " New File",        icon = " ", key = "n" },
           { action = "FzfLua oldfiles",                             desc = " Recent Files",    icon = " ", key = "r" },
           { action = "FzfLua live_grep",                            desc = " Find Text",       icon = " ", key = "g" },
           { action = "FzfLua files cwd=~/.config/nvim/",            desc = " Config",          icon = " ", key = "c" },
-          { action = 'lua require("persistence").load()',           desc = " Restore Session", icon = " ", key = "s" },
+          { action = function() require("persistence").load() end,  desc = " Restore Session", icon = " ", key = "s" },
           { action = "LazyExtras",                                  desc = " Lazy Extras",     icon = " ", key = "x" },
           { action = "Lazy",                                        desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = "qa",                                          desc = " Quit",            icon = " ", key = "q" },
