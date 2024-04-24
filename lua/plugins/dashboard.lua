@@ -23,12 +23,11 @@ return {
         header = vim.split(logo, "\n"),
         -- stylua: ignore
         center = {
-          { action = function() require("fzf-lua").files({ cwd = vim.loop.cwd() }) end,
-                                                                    desc = " Find File",       icon = " ", key = "f" },
+          { action = LazyVim.telescope("files"),                    desc = " Find File",       icon = " ", key = "f" },
           { action = "ene | startinsert",                           desc = " New File",        icon = " ", key = "n" },
-          { action = "FzfLua oldfiles",                             desc = " Recent Files",    icon = " ", key = "r" },
-          { action = "FzfLua live_grep",                            desc = " Find Text",       icon = " ", key = "g" },
-          { action = "FzfLua files cwd=~/.config/nvim/",            desc = " Config",          icon = " ", key = "c" },
+          { action = "Telescope oldfiles",                          desc = " Recent Files",    icon = " ", key = "r" },
+          { action = "Telescope live_grep",                         desc = " Find Text",       icon = " ", key = "g" },
+          { action = [[lua LazyVim.telescope.config_files()()]],    desc = " Config",          icon = " ", key = "c" },
           { action = function() require("persistence").load() end,  desc = " Restore Session", icon = " ", key = "s" },
           { action = "LazyExtras",                                  desc = " Lazy Extras",     icon = " ", key = "x" },
           { action = "Lazy",                                        desc = " Lazy",            icon = "󰒲 ", key = "l" },
