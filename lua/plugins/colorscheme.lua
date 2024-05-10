@@ -1,5 +1,12 @@
 return {
   {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox",
+    },
+  },
+
+  {
     "ellisonleao/gruvbox.nvim",
     opts = function()
       local Gruvbox = require("gruvbox")
@@ -94,12 +101,5 @@ return {
         },
       }
     end,
-  },
-
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
   },
 }
