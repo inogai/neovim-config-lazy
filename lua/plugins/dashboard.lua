@@ -4,7 +4,7 @@ return {
     "inogai/dashboard-nvim",
     lazy = true,
     event = function()
-      return { "OptionSet background" }
+      return { "VeryLazy" }
     end,
     config = function(_, opts)
       if vim.fn.argc() == 0 and vim.api.nvim_buf_get_name(0) == "" and vim.g.read_from_stdin == nil then
