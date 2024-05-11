@@ -8,7 +8,11 @@ return {
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   {
     "echasnovski/mini.files",
+    lazy = false,
     opts = function(_, opts)
+      opts.options = {
+        use_as_default_explorer = true,
+      }
       opts.mappings = {
         go_in = "<right>",
         go_out = "<left>",
