@@ -4,4 +4,6 @@
 
 vim.opt.relativenumber = false
 
+vim.g.root_spec = { "lsp", { ".git", "lua", ".obsidian" }, "cwd" }
+
 vim.g.lazyvim_python_lsp = "basedpyright"
