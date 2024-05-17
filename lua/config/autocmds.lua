@@ -23,3 +23,5 @@ autocmd("BufLeave", {
     vim.cmd("setlocal mouse=a")
   end,
 })
+
+require("config.snippets.mini-files_git_integration")
