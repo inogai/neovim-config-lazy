@@ -26,7 +26,8 @@ return {
           file_path = vim.fn.stdpath("config") .. "/asciiart/noah_" .. vim.o.background .. ".txt",
           file_height = 16,
           file_width = 40,
-          row = math.floor((vim.o.lines - 32) / 2),
+          row = math.floor((vim.o.lines - 38) / 2),
+
           padding_bottom = 2,
         },
         config = {
@@ -35,13 +36,13 @@ return {
         center = {
           { action = LazyVim.telescope("files"),                    desc = " Find File",       icon = "󰱽 ", key = "f" },
           { action = "ObsidianToday",                               desc = " Daily Notes",     icon = "󱞂 ", key = "o" },
-          -- { action = "ene | startinsert",                           desc = " New File",        icon = " ", key = "n" },
+          { action = "ene | startinsert",                           desc = " New File",        icon = " ", key = "n" },
           { action = "Telescope oldfiles",                          desc = " Recent Files",    icon = " ", key = "r" },
           { action = "Telescope live_grep",                         desc = " Find Text",       icon = "󱎸 ", key = "g" },
           { action = [[lua LazyVim.telescope.config_files()()]],    desc = " Config",          icon = " ", key = "c" },
           { action = function() require("persistence").load() end,  desc = " Restore Session", icon = "󰦛 ", key = "s" },
-          -- { action = "LazyExtras",                                  desc = " Lazy Extras",     icon = " ", key = "x" },
-          -- { action = "Lazy",                                        desc = " Lazy",            icon = "󰒲 ", key = "l" },
+          { action = "LazyExtras",                                  desc = " Lazy Extras",     icon = " ", key = "x" },
+          { action = "Lazy",                                        desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = "qa",                                          desc = " Quit",            icon = " ", key = "q" },
       },
           footer = function()
