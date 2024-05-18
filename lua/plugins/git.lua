@@ -70,4 +70,23 @@ return {
       { "<leader>gg", "<cmd>DiffviewOpen<CR>", desc = "Open Diffview" },
     },
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      {
+        "<leader>gc",
+        function()
+          require("telescope.builtin").git_commits({ cwd = LazyVim.root() })
+        end,
+        desc = "[C]ommits",
+      },
+      {
+        "<leader>gf",
+        function()
+          require("telescope.builtin").git_bcommits({ cwd = LazyVim.root() })
+        end,
+        desc = "[F]ile History",
+      },
+    },
+  },
 }
