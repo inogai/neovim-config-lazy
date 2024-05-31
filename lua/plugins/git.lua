@@ -89,7 +89,7 @@ return {
               if ctx.symbol == "a" then
                 vim.opt_local.winhl = table.concat({
                   "DiffAdd:MyDiffTextFrom",
-                  -- "DiffDelete:DiffDelete",
+                  "DiffDelete:MyDiffDeletedLines",
                   "DiffChange:MyDiffChangeFrom",
                   "DiffText:MyDiffTextFrom",
                 }, ",")
