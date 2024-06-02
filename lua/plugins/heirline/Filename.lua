@@ -54,15 +54,37 @@ local Path = {
   {
     {
       hl = { fg = "fg3" },
-      provider = function(self)
-        return self._path_root
-      end,
+      flexible = 1,
+      {
+        provider = function(self)
+          return self._path_root
+        end,
+      },
+      {
+        provider = function(self)
+          return vim.fn.pathshorten(self._path_root)
+        end,
+      },
+      {
+        provider = "",
+      },
     },
     {
       hl = { fg = "green" },
-      provider = function(self)
-        return self._path_body
-      end,
+      flexible = 2,
+      {
+        provider = function(self)
+          return self._path_body
+        end,
+      },
+      {
+        provider = function(self)
+          return vim.fn.pathshorten(self._path_body)
+        end,
+      },
+      {
+        provider = "",
+      },
     },
   },
 }
@@ -101,7 +123,7 @@ local Filename = {
     self._root = LazyVim.root()
     self._file = vim.fn.expand("%:p")
   end,
-  update = { "BufEnter", "BufWritePost", "DirChanged" },
+  update = { "BufEnter", "BufWritePost", "DirChanged", "VimResized" },
 
   { provider = " " },
   Path,
