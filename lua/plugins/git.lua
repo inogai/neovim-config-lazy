@@ -1,3 +1,15 @@
+local M = {}
+
+function M.cwd()
+  return LazyVim.root()
+end
+
+function M.commit()
+  local neogit = require("neogit")
+  neogit.open({ cwd = M.cwd() })
+  neogit.action("commit", "commit", {})()
+end
+
 return {
   {
     "NeogitOrg/neogit",
@@ -12,21 +24,19 @@ return {
 
       neogit.setup({})
 
-      vim.api.nvim_create_user_command("Gcommit", neogit.action("commit", "commit"), {})
+      vim.api.nvim_create_user_command("Gcommit", M.commit, {})
     end,
     keys = {
       {
         "<leader>gg",
         function()
-          require("neogit").open({ cwd = LazyVim.root() })
+          require("neogit").open({ cwd = M.cwd() })
         end,
         desc = "Open Neogit",
       },
       {
         "<leader>gc",
-        function()
-          require("neogit").action("commit", "commit")()
-        end,
+        M.commit,
         desc = "Git [C]ommit",
       },
     },
@@ -42,9 +52,7 @@ return {
         {
           { "n" },
           "c",
-          function()
-            require("neogit").action("commit", "commit")()
-          end,
+          M.commit,
           { desc = "Git [C]ommit" },
         },
       }
@@ -95,7 +103,7 @@ return {
                 }, ",")
               elseif ctx.symbol == "b" then
                 vim.opt_local.winhl = table.concat({
-                  "DiffDelete:DiffDelete",
+                  "DiffDelete:MyDiffDeletedLines",
                   "DiffChange:MyDiffChangeTo",
                   "DiffText:MyDiffTextTo",
                 }, ",")
