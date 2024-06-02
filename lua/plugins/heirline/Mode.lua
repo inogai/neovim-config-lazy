@@ -48,6 +48,7 @@ local _color_map = {
   v = { fg = "bg0", bg = "purple" },
   [""] = { fg = "bg0", bg = "purple" },
   c = { fg = "bg0", bg = "yellow" },
+  t = { fg = "bg0", bg = "orange" },
   ["*"] = { fg = "bg0", bg = "red" },
 }
 
