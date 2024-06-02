@@ -27,6 +27,8 @@ return {
           bg1 = utils.get_highlight("GruvboxBg1").fg,
           fg1 = utils.get_highlight("GruvboxFg1").fg,
           fg3 = utils.get_highlight("GruvboxFg3").fg,
+          bright_fg = utils.get_highlight("GruvboxFg1").fg,
+          bright_bg = utils.get_highlight("GruvboxBg1").fg,
           red = utils.get_highlight("GruvboxRed").fg,
           green = utils.get_highlight("GruvboxGreen").fg,
           blue = utils.get_highlight("GruvboxBlue").fg,
