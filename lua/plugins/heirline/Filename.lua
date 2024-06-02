@@ -19,6 +19,7 @@ local Path = {
     local head_rel = plpath:new(head):make_relative(self._root)
 
     -- if `head_rel` is not precedent to root, then no need to show root
+    if head_rel:sub(0, 1) == "/" or head_rel:find(":/") then
       self._path_body = vim.fn.fnamemodify(head_rel, ":~") .. "/"
       return
     end
