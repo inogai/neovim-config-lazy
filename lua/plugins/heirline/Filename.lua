@@ -98,7 +98,6 @@ local Size = {
 }
 
 local Filename = {
-  hl = { bg = "bg1" },
   ---@param self MyHeirline.Filename.Self
   init = function(self)
     local plpath = require("plenary.path")

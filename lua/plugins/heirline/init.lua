@@ -74,14 +74,14 @@ return {
           return vim.bo.modifiable and vim.bo.modified
         end,
         update = { "InsertLeave", "TextChanged" },
-        hl = { fg = "fg1", bg = "bg1" },
         provider = "*",
       }
 
-      local Align = { hl = { bg = "bg1" }, provider = "%=" }
-      local Space = { hl = { bg = "bg1" }, provider = " " }
+      local Align = { provider = "%=" }
+      local Space = { provider = " " }
 
       local StatusLine = {
+        hl = { fg = "fg1", bg = "bg1" },
         Mode,
         Space,
         Icon,
