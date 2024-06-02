@@ -3,23 +3,6 @@
 ---@field _path string
 ---@field _file string
 
-local function pretty_path(path)
-  local plpath = require("plenary.path")
-
-  local home = vim.fn.expand("$HOME")
-  local root_rel = plpath:new(path):make_relative(home)
-
-  if root_rel == "." then
-    return "~/"
-  end
-
-  if root_rel.sub(0, 1) == "/" then
-    return root_rel .. "/"
-  end
-
-  return "~/" .. root_rel .. "/"
-end
-
 ---@class MyHeirline.Filename.Path.Self : MyHeirline.Filename.Self
 ---@field _path_body string
 ---@field _path_root string
@@ -36,18 +19,17 @@ local Path = {
     local head_rel = plpath:new(head):make_relative(self._root)
 
     -- if `head_rel` is not precedent to root, then no need to show root
-    if head_rel:sub(0, 1) == "/" then
-      self._path_body = pretty_path(head_rel)
+      self._path_body = vim.fn.fnamemodify(head_rel, ":~") .. "/"
       return
     end
 
     -- if `head_rel` is root, then no need to show body
     if head_rel == "." then
-      self._path_root = pretty_path(self._root)
+      self._path_root = vim.fn.fnamemodify(self._root, ":~") .. "/"
       return
     end
 
-    self._path_root = pretty_path(self._root)
+    self._path_root = vim.fn.fnamemodify(self._root, ":~") .. "/"
     self._path_body = head_rel .. "/"
   end,
 
