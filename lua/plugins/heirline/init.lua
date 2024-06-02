@@ -13,6 +13,13 @@ return {
     end,
   },
   {
+    "SmiteshP/nvim-navic",
+    opts = function(_, opts)
+      opts.lazy_update_context = false
+      return opts
+    end,
+  },
+  {
     "nvim-lualine/lualine.nvim",
     enabled = false,
   },
@@ -68,6 +75,7 @@ return {
       local Filename = require("plugins.heirline.Filename")
       local Diagnostics = require("plugins.heirline.Diagnostics")
       local Prose = require("plugins.heirline.Prose")
+      local Navic = require("plugins.heirline.Navic")
 
       local ModifiedIndicator = {
         condition = function()
@@ -93,11 +101,16 @@ return {
         Prose,
       }
 
+      local Winbar = {
+        { provider = "       " },
+        Navic,
+      }
+
       -- LazyVim.info(vim.inspect(StatusLine))
 
       require("heirline").setup({
         statusline = StatusLine,
-        -- winbar = WinBar,
+        winbar = Winbar,
         -- tabline = TabLine,
         -- statuscolumn = StatusColumn
         opts = {},
