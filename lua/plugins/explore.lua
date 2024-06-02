@@ -1,6 +1,6 @@
 local minifiles_toggle = function(MiniFiles)
   if not MiniFiles.close() then
-    MiniFiles.open(LazyVim.root())
+    MiniFiles.open(vim.fn.expand("%:p:h"))
   end
 end
 
