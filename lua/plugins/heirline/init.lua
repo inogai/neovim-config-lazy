@@ -27,6 +27,7 @@ return {
     "rebelot/heirline.nvim",
     config = function()
       local utils = require("heirline.utils")
+      local conditions = require("heirline.conditions")
 
       local function setup_colors()
         return {
@@ -113,7 +114,14 @@ return {
         winbar = Winbar,
         -- tabline = TabLine,
         -- statuscolumn = StatusColumn
-        opts = {},
+        opts = {
+          disable_winbar_cb = function(args)
+            return conditions.buffer_matches({
+              buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
+              filetype = { "^git.*", "fugitive", "Trouble", "dashboard" },
+            }, args.buf)
+          end,
+        },
       })
     end,
   },
