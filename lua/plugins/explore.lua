@@ -1,6 +1,7 @@
-local minifiles_toggle = function(MiniFiles)
+local minifiles_toggle = function()
+  local MiniFiles = require("mini.files")
   if not MiniFiles.close() then
-    MiniFiles.open(vim.fn.expand("%:p:h"))
+    MiniFiles.open(vim.api.nvim_buf_get_name(0), true)
   end
 end
 
@@ -25,7 +26,7 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>e", function () minifiles_toggle(require("mini.files")) end, desc = "Files" },
+      { "<leader>e", minifiles_toggle, desc = "Files" },
     },
   },
 }
