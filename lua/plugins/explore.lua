@@ -11,6 +11,12 @@ return {
     lazy = false,
     opts = function(_, opts)
       opts.mappings = {
+        toggle_hidden = "g.",
+        change_cwd = "gc",
+        go_in_horizontal = "<C-w>s",
+        go_in_vertical = "<C-w>v",
+        go_in_horizontal_plus = "<C-w>S",
+        go_in_vertical_plus = "<C-w>V",
         synchronize = ";",
       }
       opts.options = {
