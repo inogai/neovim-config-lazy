@@ -26,6 +26,11 @@ return {
     "echasnovski/mini.indentscope",
     opts = function()
       return {
+        draw = {
+          animation = function()
+            return 40
+          end,
+        },
         symbol = "▏",
       }
     end,
