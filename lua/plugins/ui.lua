@@ -48,6 +48,10 @@ return {
       }
 
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, function(tick, bufnr, scope_node, scope_index)
+        if bufnr ~= vim.api.nvim_get_current_buf() then
+          return scope_index
+        end
+
         local row, col = scope_node:start()
 
         local id = scope_node:id()
