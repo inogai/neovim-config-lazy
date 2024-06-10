@@ -8,4 +8,19 @@ return {
       require("ultimate-autopair").setup()
     end,
   },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+
+    config = function()
+      ---@type rainbow_delimiters.config
+      vim.g.rainbow_delimiters = {
+        highlight = {
+          "BasedYellow",
+          "BasedGreen",
+          "BasedPurple",
+          "BasedBlue",
+        },
+      }
+    end,
+  },
 }
