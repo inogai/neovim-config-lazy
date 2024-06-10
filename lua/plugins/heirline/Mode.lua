@@ -44,12 +44,12 @@ local mode_map = {
 
 local _color_map = {
   n = { fg = "fg3", bg = "bg1" },
-  i = { fg = "bg0", bg = "green" },
-  v = { fg = "bg0", bg = "purple" },
-  [""] = { fg = "bg0", bg = "purple" },
-  c = { fg = "bg0", bg = "yellow" },
-  t = { fg = "bg0", bg = "orange" },
-  ["*"] = { fg = "bg0", bg = "red" },
+  i = { fg = "bg1", bg = "green" },
+  v = { fg = "bg1", bg = "purple" },
+  [""] = { fg = "bg1", bg = "purple" },
+  c = { fg = "bg1", bg = "yellow" },
+  t = { fg = "bg1", bg = "orange" },
+  ["*"] = { fg = "bg1", bg = "red" },
 }
 
 local color_map = function(mode)

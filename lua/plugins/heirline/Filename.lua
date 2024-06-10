@@ -36,7 +36,7 @@ local Path = {
 
   {
     {
-      hl = { fg = "fg3" },
+      hl = { fg = "fg3", bg = "bg1" },
       flexible = 1,
       {
         provider = function(self)
@@ -53,7 +53,7 @@ local Path = {
       },
     },
     {
-      hl = { fg = "green" },
+      hl = { fg = "green", bg = "bg1" },
       flexible = 2,
       {
         provider = function(self)
@@ -74,7 +74,7 @@ local Path = {
 
 ---@type MyHeirline.Unit<MyHeirline.Filename.Self>
 local Name = {
-  hl = { fg = "fg1" },
+  hl = { fg = "fg1", bg = "bg1" },
   provider = function(self)
     return vim.fn.fnamemodify(self._file, ":t")
   end,
@@ -82,7 +82,7 @@ local Name = {
 
 ---@type MyHeirline.Unit<MyHeirline.Filename.Self>
 local Size = {
-  hl = { fg = "fg3" },
+  hl = { fg = "fg3", bg = "bg1" },
   provider = function(self)
     local nr = vim.fn.getfsize(self._file)
     local magnitude = 1
