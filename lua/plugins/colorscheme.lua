@@ -1,17 +1,9 @@
 return {
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
-  },
-
-  {
-    "inogai/gruvbox.nvim",
-    opts = function()
-      return {
-        bold = false,
-      }
+    "rktjmp/lush.nvim",
+    priority = 999,
+    config = function()
+      require("lush")(require("plugins.lush.moegi"))
     end,
   },
 }
