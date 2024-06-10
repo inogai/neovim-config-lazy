@@ -1,6 +1,6 @@
 return {
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "inogai/indent-blankline.nvim",
     opts = function(_, old_opts)
       local color = { "Yellow", "Green", "Purple", "Blue", "Cyan" }
 
@@ -46,6 +46,14 @@ return {
       local instant_draw_opts = {
         animation_fun = MiniIndentscope.gen_animation.none(),
       }
+
+      hooks.register(hooks.type.SCOPE_NOT_FOUND, function(tick, bufnr)
+        if bufnr ~= vim.api.nvim_get_current_buf() then
+          return
+        end
+
+        MiniIndentscope.undraw()
+      end)
 
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, function(tick, bufnr, scope_node, scope_index)
         if bufnr ~= vim.api.nvim_get_current_buf() then
