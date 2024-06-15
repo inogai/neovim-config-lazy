@@ -34,12 +34,12 @@ return {
           header = {},
         -- stylua: ignore
         center = {
-          { action = LazyVim.telescope("files"),                    desc = " Find File",       icon = "󰱽 ", key = "f" },
+          { action = LazyVim.pick("files"),                         desc = " Find File",       icon = "󰱽 ", key = "f" },
           { action = "ObsidianToday",                               desc = " Daily Notes",     icon = "󱞂 ", key = "o" },
           { action = "ene | startinsert",                           desc = " New File",        icon = " ", key = "n" },
-          { action = "Telescope oldfiles",                          desc = " Recent Files",    icon = " ", key = "r" },
-          { action = "Telescope live_grep",                         desc = " Find Text",       icon = "󱎸 ", key = "g" },
-          { action = [[lua LazyVim.telescope.config_files()()]],    desc = " Config",          icon = " ", key = "c" },
+          { action = LazyVim.pick("oldfiles"),                      desc = " Recent Files",    icon = " ", key = "r" },
+          { action = LazyVim.pick("live_grep"),                     desc = " Find Text",       icon = "󱎸 ", key = "g" },
+          { action = LazyVim.pick.config_files(),                   desc = " Config",          icon = " ", key = "c" },
           { action = function() require("persistence").load() end,  desc = " Restore Session", icon = "󰦛 ", key = "s" },
           { action = "LazyExtras",                                  desc = " Lazy Extras",     icon = " ", key = "x" },
           { action = "Lazy",                                        desc = " Lazy",            icon = "󰒲 ", key = "l" },
