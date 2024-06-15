@@ -1,20 +1,24 @@
 local lush = require "lush"
 
 local utils = require "plugins.lush.utils"
+local Lch = utils.Lch
 
-local lch = utils.lch
-local hex = utils.hex_as_lch
+local opts = { invert_lighteness = false }
 
-local buf_fg = hex "#e0e0e0"
-local buf_bg = hex "#202020"
-
-local ui_fg = hex "#999999"
-local ui_hi_fg = buf_fg.da(4)
-local ui_bg = buf_bg.da(4)
-
-local buf_hi_bg = buf_bg.li(8)
+local lch = function(l, c, h)
+  return Lch:new(l, c, h, opts)
+end
+local hex = function(hex_str)
+  return Lch:from_hex(hex_str, opts)
+end
 
 local p = {}
+
+p.black = hex "#202020"
+p.dark_gray = hex "#303030"
+p.gray = hex "#999999"
+p.light_gray = hex "#c0c0c0"
+p.white = hex "#e0e0e0"
 
 ---@alias HueName "red"|"green"|"yellow"|"blue"|"purple"|"cyan"|"orange"
 
@@ -33,18 +37,21 @@ local pal = {
 
 for index, hue_name in ipairs(hue_name_list) do
   p[hue_name] = pal[index]
-  p["bright_" .. hue_name] = pal[index].mod_lc { 8, 5 }
-  p["based_" .. hue_name] = pal[index].set_lc { 64, 35 }
-  p["dark_" .. hue_name] = pal[index].set_lc { 54, 25 }
-  p["faded_" .. hue_name] = pal[index].set_lc { 36, 13 }
-  p["highlightbg_" .. hue_name] = pal[index].set_lc { 94, 35 }
+  p["bright_" .. hue_name] = pal[index]:li(8):ci(5)
+  p["based_" .. hue_name] = pal[index]:l(64):c(35)
+  p["dark_" .. hue_name] = pal[index]:l(54):c(25)
+  p["faded_" .. hue_name] = pal[index]:l(36):c(13)
+  p["highlightbg_" .. hue_name] = pal[index]:l(94):c(35)
 end
 
-p.black = hex "#202020"
-p.dark_gray = hex "#303030"
-p.gray = hex "#999999"
-p.light_gray = hex "#c0c0c0"
-p.white = hex "#e0e0e0"
+p.buf_fg = p.white
+p.buf_bg = p.black
+
+p.ui_fg = p.light_gray
+p.ui_hi_fg = p.white
+p.ui_bg = p.buf_bg:li(4)
+
+p.buf_hi_bg = p.buf_bg:li(8)
 
 for i = 0, 15 do
   vim.g["terminal_color_" .. i] = nil
@@ -99,26 +106,26 @@ local theme = lush(function(injected_functions)
     BrightRedHighlight { gui = "reverse", fg = p.bright_red },
     BrightGreenHighlight { gui = "reverse", fg = p.bright_green },
     BrightYellowHighlight { gui = "reverse", fg = p.bright_yellow },
-    RedHighlight { gui = "bold", bg = p.red.mix(buf_bg, 0.5) },
+    RedHighlight { gui = "bold", bg = p.red:mix(p.buf_bg, 0.5) },
 
-    GreenHighlight { gui = "bold", bg = p.green.mix(buf_bg, 0.5) },
-    YellowHighlight { gui = "bold", bg = p.yellow.mix(buf_bg, 0.5) },
+    GreenHighlight { gui = "bold", bg = p.green:mix(p.buf_bg, 0.5) },
+    YellowHighlight { gui = "bold", bg = p.yellow:mix(p.buf_bg, 0.5) },
 
-    WeakRedHighlight { bg = p.based_red.mix(buf_bg, 0.5) },
-    WeakGreenHighlight { bg = p.based_green.mix(buf_bg, 0.5) },
-    WeakYellowHighlight { bg = p.based_yellow.mix(buf_bg, 0.5) },
-    WeakBlueHighlight { bg = p.based_blue.mix(buf_bg, 0.5) },
-    WeakPurpleHighlight { bg = p.based_purple.mix(buf_bg, 0.5) },
-    WeakCyanHighlight { bg = p.based_cyan.mix(buf_bg, 0.5) },
-    WeakOrangeHighlight { bg = p.based_orange.mix(buf_bg, 0.5) },
+    WeakRedHighlight { bg = p.based_red:mix(p.buf_bg, 0.5) },
+    WeakGreenHighlight { bg = p.based_green:mix(p.buf_bg, 0.5) },
+    WeakYellowHighlight { bg = p.based_yellow:mix(p.buf_bg, 0.5) },
+    WeakBlueHighlight { bg = p.based_blue:mix(p.buf_bg, 0.5) },
+    WeakPurpleHighlight { bg = p.based_purple:mix(p.buf_bg, 0.5) },
+    WeakCyanHighlight { bg = p.based_cyan:mix(p.buf_bg, 0.5) },
+    WeakOrangeHighlight { bg = p.based_orange:mix(p.buf_bg, 0.5) },
 
-    RedOverlay { bg = p.faded_red.mix(buf_bg, 0.5) },
-    GreenOverlay { bg = p.faded_green.mix(buf_bg, 0.5) },
-    YellowOverlay { bg = p.faded_yellow.mix(buf_bg, 0.5) },
-    BlueOverlay { bg = p.faded_blue.mix(buf_bg, 0.5) },
-    PurpleOverlay { bg = p.faded_purple.mix(buf_bg, 0.5) },
-    CyanOverlay { bg = p.faded_cyan.mix(buf_bg, 0.5) },
-    OrangeOverlay { bg = p.faded_orange.mix(buf_bg, 0.5) },
+    RedOverlay { bg = p.faded_red:mix(p.buf_bg, 0.5) },
+    GreenOverlay { bg = p.faded_green:mix(p.buf_bg, 0.5) },
+    YellowOverlay { bg = p.faded_yellow:mix(p.buf_bg, 0.5) },
+    BlueOverlay { bg = p.faded_blue:mix(p.buf_bg, 0.5) },
+    PurpleOverlay { bg = p.faded_purple:mix(p.buf_bg, 0.5) },
+    CyanOverlay { bg = p.faded_cyan:mix(p.buf_bg, 0.5) },
+    OrangeOverlay { bg = p.faded_orange:mix(p.buf_bg, 0.5) },
 
     RedUnderline { gui = "underline", sp = p.red },
     GreenUnderline { gui = "underline", sp = p.green },
@@ -144,7 +151,7 @@ local theme = lush(function(injected_functions)
     -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
     -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine { bg = buf_hi_bg }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine { bg = p.buf_hi_bg }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory { fg = p.blue }, -- Directory names (and other special names in listings)
     DiffAdd { WeakGreenHighlight }, -- Diff mode: Added line |diff.txt|
     DiffChange { YellowHighlight }, -- Diff mode: Changed line |diff.txt|
@@ -155,29 +162,29 @@ local theme = lush(function(injected_functions)
     -- TermCursorNC   { }, -- Cursor in an unfocused terminal
     -- ErrorMsg       { }, -- Error messages on the command line
     -- VertSplit      { }, -- Column separating vertically split windows
-    Folded { fg = ui_hi_fg, bg = ui_bg }, -- Line used for closed folds
+    Folded { fg = p.ui_hi_fg, bg = p.ui_bg }, -- Line used for closed folds
     -- FoldColumn {}, -- 'foldcolumn'
     -- SignColumn     { }, -- Column where |signs| are displayed
     IncSearch { BrightYellowHighlight }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     Substitute { BrightRedHighlight }, -- |:substitute| replacement text highlighting
-    LineNr { fg = ui_fg }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    LineNr { fg = p.ui_fg }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
     -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-    CursorLineNr { fg = p.yellow, bg = buf_hi_bg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    CursorLineNr { fg = p.yellow, bg = p.buf_hi_bg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-    MatchParen { gui = "bold", bg = buf_hi_bg }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    MatchParen { gui = "bold", bg = p.buf_hi_bg }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea        { }, -- Area for messages and cmdline
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal { fg = buf_fg, bg = buf_bg }, -- Normal text
-    NormalFloat { fg = ui_fg, bg = ui_bg }, -- Normal text in floating windows.
+    Normal { fg = p.buf_fg, bg = p.buf_bg }, -- Normal text
+    NormalFloat { fg = p.ui_fg, bg = p.ui_bg }, -- Normal text in floating windows.
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
-    Pmenu { bg = ui_bg }, -- Popup menu: Normal item.
+    Pmenu { bg = p.ui_bg }, -- Popup menu: Normal item.
     -- PmenuSel       { }, -- Popup menu: Selected item.
     -- PmenuKind      { }, -- Popup menu: Normal item "kind"
     -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
@@ -193,7 +200,7 @@ local theme = lush(function(injected_functions)
     SpellCap { YellowUndercurl }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal { GreenUndercurl }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare { CyanUndercurl }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-    StatusLine { fg = ui_fg, bg = ui_bg }, -- Status line of current window
+    StatusLine { fg = p.ui_fg, bg = p.ui_bg }, -- Status line of current window
     -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     -- TabLine        { }, -- Tab pages line, not active tab page label
     -- TabLineFill    { }, -- Tab pages line, where there are no labels
@@ -205,7 +212,7 @@ local theme = lush(function(injected_functions)
     -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     -- Winseparator   {  , -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
     -- WildMenu       { }, -- Current match in 'wildmenu' completion
-    WinBar { fg = ui_fg, bg = buf_bg }, -- Window bar of current window
+    WinBar { fg = p.ui_fg, bg = p.buf_bg }, -- Window bar of current window
     WinBarNC { WinBar }, -- Window bar of not-current windows
 
     -- Basic Syntax
@@ -247,7 +254,7 @@ local theme = lush(function(injected_functions)
 
     -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    Error { fg = ui_hi_fg, bg = p.red }, -- Any erroneous construct
+    Error { fg = p.ui_hi_fg, bg = p.red }, -- Any erroneous construct
     -- Todo           { }, -- Anything that needs extra attention; mostly the keyword
 
     -- These groups are for the native LSP client and diagnostic system. Some
@@ -263,7 +270,7 @@ local theme = lush(function(injected_functions)
     -- LspCodeLensSeparator        { } , -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { } , -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
 
-    LspInlayHint { gui = "bold italic", fg = ui_fg, bg = buf_hi_bg },
+    LspInlayHint { gui = "bold italic", fg = p.ui_fg, bg = p.buf_hi_bg },
 
     -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
     --
