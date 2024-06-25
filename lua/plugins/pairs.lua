@@ -15,10 +15,10 @@ return {
       ---@type rainbow_delimiters.config
       vim.g.rainbow_delimiters = {
         highlight = {
-          "BasedYellow",
-          "BasedGreen",
-          "BasedPurple",
-          "BasedBlue",
+          "RainbowDelimiter1",
+          "RainbowDelimiter2",
+          "RainbowDelimiter3",
+          "RainbowDelimiter4",
         },
       }
     end,

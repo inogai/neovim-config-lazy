@@ -1,9 +1,15 @@
 return {
   {
-    "rktjmp/lush.nvim",
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "moegi",
+    },
+  },
+  {
+    "inogai/moegi.nvim",
+    dependencies = {
+      "rktjmp/lush.nvim",
+    },
     priority = 999,
-    config = function()
-      require("lush")(require("plugins.lush.moegi"))
-    end,
   },
 }
