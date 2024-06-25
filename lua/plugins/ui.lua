@@ -2,21 +2,23 @@ return {
   {
     "inogai/indent-blankline.nvim",
     opts = function(_, old_opts)
-      local color = { "Yellow", "Green", "Purple", "Blue", "Cyan" }
+      local highlight = {
+        "RainbowDelimiter1",
+        "RainbowDelimiter2",
+        "RainbowDelimiter3",
+        "RainbowDelimiter4",
+      }
 
       local opts = {
-        indent = {
-          highlight = {},
-        },
         scope = {
-          highlight = { "BasedRed" },
+          highlight = highlight,
         },
         exclude = old_opts.exclude,
       }
 
-      for _, c in ipairs(color) do
-        table.insert(opts.indent.highlight, "Faded" .. c)
-      end
+      local hooks = require("ibl.hooks")
+
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
       return opts
     end,
