@@ -46,7 +46,7 @@ return {
           green = utils.get_highlight("String").fg,
           blue = utils.get_highlight("Directory").fg,
           gray = utils.get_highlight("NonText").fg,
-          yellow = utils.get_highlight("MoegiYellow").fg,
+          yellow = utils.get_highlight("DiagnosticWarn").fg,
           orange = utils.get_highlight("Constant").fg,
           purple = utils.get_highlight("Statement").fg,
           cyan = utils.get_highlight("Special").fg,
