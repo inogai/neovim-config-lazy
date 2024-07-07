@@ -1,11 +1,21 @@
 return {
   { "echasnovski/mini.pairs", enabled = false },
   {
-    "altermo/ultimate-autopair.nvim",
+    "inogai/ultimate-autopair.nvim",
+    dir = os.getenv("HOME") .. "/Workspaces/ultimate-autopair.nvim",
     event = { "InsertEnter", "CmdlineEnter" },
-    branch = "v0.6",
+    -- branch = "v0.6",
     config = function()
-      require("ultimate-autopair").setup()
+      local ua = require("ultimate-autopair")
+      local configs = {
+        ua.extend_default({
+          extensions = {
+            surroundtsnode = { p = 20 },
+            suround = { p = 0 },
+          },
+        }),
+      }
+      ua.init(configs)
     end,
   },
   {
