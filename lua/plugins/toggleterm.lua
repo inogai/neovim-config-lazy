@@ -3,6 +3,7 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = true,
+    cmd = { "ToggleTerm", "TermExec" },
     -- stylua: ignore
     keys = {
       { "<c-/>", function ()
