@@ -7,6 +7,7 @@ return {
   },
   {
     "inogai/moegi.nvim",
+    dir = os.getenv("HOME") .. "/Workspaces/moegi.nvim",
     dependencies = {
       "rktjmp/lush.nvim",
     },
