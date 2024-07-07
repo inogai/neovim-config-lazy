@@ -6,8 +6,7 @@ return {
       "mfussenegger/nvim-dap",
       "mfussenegger/nvim-dap-python", --optional
     },
-
-    lazy = false,
+    ft = "python",
     branch = "regexp", -- This is the regexp branch, use this for the new version
     config = function(_, opts)
       require("venv-selector").setup(opts)
