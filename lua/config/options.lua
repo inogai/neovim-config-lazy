@@ -40,3 +40,8 @@ end
 vim.g.root_spec = { "lsp", { ".git", "lua", ".obsidian" }, diffview_detector, "cwd" }
 
 vim.g.lazyvim_python_lsp = "basedpyright"
+
+if vim.g.vscode then
+  vim.g.lazyvim_python_lsp = "disabled"
+  vim.g.lazyvim_python_ruff = "disabled"
+end
