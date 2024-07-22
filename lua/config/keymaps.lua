@@ -10,3 +10,12 @@ map({ "i", "x", "n", "s" }, "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol"
 vim.keymap.set("x", "p", function()
   return 'pgv"' .. vim.v.register .. "y"
 end, { remap = false, expr = true })
+
+map("n", "<leader>gg", function()
+  LazyVim.lazygit({
+    cwd = LazyVim.root.git(),
+    size = {
+      width = 1,
+    },
+  })
+end, { desc = "Lazygit (Root Dir)" })
