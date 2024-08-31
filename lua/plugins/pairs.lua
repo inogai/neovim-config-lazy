@@ -22,6 +22,7 @@ return {
     "HiPhish/rainbow-delimiters.nvim",
 
     config = function()
+      ---@module "rainbow-delimiters"
       ---@type rainbow_delimiters.config
       vim.g.rainbow_delimiters = {
         highlight = {
