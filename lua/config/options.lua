@@ -37,7 +37,7 @@ local function diffview_detector(bufnr)
 end
 
 ---@type LazyRootSpec[]
-vim.g.root_spec = { "lsp", { ".git", "lua", ".obsidian" }, diffview_detector, "cwd" }
+vim.g.root_spec = { ".obsidian", "lsp", { ".git", "lua" }, diffview_detector, "cwd" }
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 
