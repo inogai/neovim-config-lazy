@@ -4,44 +4,59 @@ end
 
 return {
   {
-    "echasnovski/mini.map",
-    version = false,
-    dependencies = {
-      "echasnovski/mini.diff",
+    "gorbit99/codewindow.nvim",
+    event = "BufEnter",
+    opts = {
+      auto_enable = true,
+      width_multiplier = 4,
+      minimap_width = 6,
+      screen_bounds = "background",
+      window_border = "none",
     },
-    opts = function(_, opts)
-      local map = require("mini.map")
-
-      opts = vim.tbl_deep_extend("force", opts or {}, {
-        symbols = {
-          encode = map.gen_encode_symbols.block("3x2"),
-        },
-        integrations = {
-          map.gen_integration.builtin_search(),
-          map.gen_integration.diff(),
-          map.gen_integration.diagnostic(),
-        },
-        window = {
-          focusable = true,
-          show_integration_count = false,
-          width = 8,
-        },
-      })
-
-      return opts
-    end,
     -- stylua: ignore
     keys = {
-      { "<leader>um", function() MiniMap().toggle() end },
+      { "<leader>um", function() require("codewindow").toggle_minimap() end },
     },
-    init = function()
-      vim.api.nvim_create_autocmd("BufAdd", {
-        callback = function()
-          MiniMap().open()
-        end,
-      })
-    end,
   },
+  -- {
+  --   "echasnovski/mini.map",
+  --   version = false,
+  --   dependencies = {
+  --     "echasnovski/mini.diff",
+  --   },
+  --   opts = function(_, opts)
+  --     local map = require("mini.map")
+  --
+  --     opts = vim.tbl_deep_extend("force", opts or {}, {
+  --       symbols = {
+  --         encode = map.gen_encode_symbols.block("3x2"),
+  --       },
+  --       integrations = {
+  --         map.gen_integration.builtin_search(),
+  --         map.gen_integration.diff(),
+  --         map.gen_integration.diagnostic(),
+  --       },
+  --       window = {
+  --         focusable = true,
+  --         show_integration_count = false,
+  --         width = 8,
+  --       },
+  --     })
+  --
+  --     return opts
+  --   end,
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>um", function() MiniMap().toggle() end },
+  --   },
+  --   init = function()
+  --     vim.api.nvim_create_autocmd("BufAdd", {
+  --       callback = function()
+  --         MiniMap().open()
+  --       end,
+  --     })
+  --   end,
+  -- },
   {
     "inogai/indent-blankline.nvim",
     opts = function(_, old_opts)
