@@ -13,4 +13,7 @@ return {
     },
     priority = 999,
   },
+  {
+    "ellisonleao/gruvbox.nvim",
+  },
 }
