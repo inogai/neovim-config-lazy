@@ -18,8 +18,6 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-
     init = function()
       local customizations = {
         { rule = "style/*", severity = "off", fixable = true },
