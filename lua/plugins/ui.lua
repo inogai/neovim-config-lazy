@@ -10,6 +10,7 @@ return {
       auto_enable = true,
       width_multiplier = 4,
       minimap_width = 6,
+      show_cursor = false,
       screen_bounds = "background",
       window_border = "none",
     },
