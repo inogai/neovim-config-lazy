@@ -3,7 +3,7 @@ local prose = require("nvim-prose")
 local Prose = {
   condition = prose.is_available,
 
-  update = { "InsertLeave" },
+  update = { "InsertLeave", "BufEnter" },
 
   {
     hl = { fg = "fg1", bg = "bg1" },
