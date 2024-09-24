@@ -1,3 +1,5 @@
+local workspace_path = vim.fn.expand("~/Documents/Obsidian/default/")
+
 return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
@@ -26,9 +28,38 @@ return {
     workspaces = {
       {
         name = "default",
-        path = "~/Documents/Obsidian/default/",
+        path = workspace_path,
       },
     },
+
+    -- Optional, alternatively you can customize the frontmatter data.
+    ---@return table
+    note_frontmatter_func = function(note)
+      -- Add the title of the note as an alias.
+      if note.path and note.path.filename then
+        local Path = require("plenary.path")
+
+        -- Define the paths
+        local note_path = Path:new(note.path.filename)
+
+        -- Compute the relative path
+        local relative_path = Path.make_relative(note_path, workspace_path)
+
+        note.id = relative_path:lower():gsub(" ", "_"):gsub(".md", "")
+      end
+
+      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+      -- `note.metadata` contains any manually added fields in the frontmatter.
+      -- So here we just make sure those fields are kept in the frontmatter.
+      if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+        for k, v in pairs(note.metadata) do
+          out[k] = v
+        end
+      end
+
+      return out
+    end,
 
     daily_notes = {
       -- Optional, if you keep daily notes in a separate directory.
