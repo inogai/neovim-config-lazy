@@ -1,5 +1,29 @@
 ---@class MyHeirline.Unit<Self>: { hl: HeirlineHighlight | fun(self: Self): HeirlineHighlight; provider: string | fun(self: Self): string; init: fun(self: Self) }
 
+local M = {}
+
+--- @class ColorSpec
+--- @field fg string
+--- @field bg string
+--- @field hl_group vim.api.keyset.get_hl_info
+
+--- @param name string
+function M.get_highlight(name)
+  local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+
+  local ret = {
+    fg = hl.fg,
+    bg = hl.bg,
+    hl_group = hl,
+  }
+
+  if hl.reverse then
+    ret.fg, ret.bg = ret.bg, ret.fg
+  end
+
+  return ret
+end
+
 return {
   {
     "skwee357/nvim-prose",
@@ -31,32 +55,32 @@ return {
 
       local function setup_colors()
         return {
-          fg = utils.get_highlight("Normal").fg,
-          bg = utils.get_highlight("Normal").bg,
+          fg = M.get_highlight("Normal").fg,
+          bg = M.get_highlight("Normal").bg,
 
-          bg1 = utils.get_highlight("StatusLine").bg,
-          fg1 = utils.get_highlight("Normal").fg,
+          bg1 = M.get_highlight("StatusLine").bg,
+          fg1 = M.get_highlight("Normal").fg,
 
-          fg3 = utils.get_highlight("StatusLine").fg,
+          fg3 = M.get_highlight("StatusLine").fg,
 
-          bright_bg = utils.get_highlight("Folded").bg,
-          bright_fg = utils.get_highlight("Folded").fg,
-          red = utils.get_highlight("DiagnosticError").fg,
-          dark_red = utils.get_highlight("DiffDelete").bg,
-          green = utils.get_highlight("String").fg,
-          blue = utils.get_highlight("Directory").fg,
-          gray = utils.get_highlight("NonText").fg,
-          yellow = utils.get_highlight("DiagnosticWarn").fg,
-          orange = utils.get_highlight("Constant").fg,
-          purple = utils.get_highlight("Statement").fg,
-          cyan = utils.get_highlight("Special").fg,
-          diag_warn = utils.get_highlight("DiagnosticWarn").fg,
-          diag_error = utils.get_highlight("DiagnosticError").fg,
-          diag_hint = utils.get_highlight("DiagnosticHint").fg,
-          diag_info = utils.get_highlight("DiagnosticInfo").fg,
-          git_del = utils.get_highlight("diffDeleted").fg,
-          git_add = utils.get_highlight("diffAdded").fg,
-          git_change = utils.get_highlight("diffChanged").fg,
+          bright_bg = M.get_highlight("Folded").bg,
+          bright_fg = M.get_highlight("Folded").fg,
+          red = M.get_highlight("DiagnosticError").fg,
+          dark_red = M.get_highlight("DiffDelete").bg,
+          green = M.get_highlight("String").fg,
+          blue = M.get_highlight("Directory").fg,
+          gray = M.get_highlight("NonText").fg,
+          yellow = M.get_highlight("DiagnosticWarn").fg,
+          orange = M.get_highlight("Constant").fg,
+          purple = M.get_highlight("Statement").fg,
+          cyan = M.get_highlight("Special").fg,
+          diag_warn = M.get_highlight("DiagnosticWarn").fg,
+          diag_error = M.get_highlight("DiagnosticError").fg,
+          diag_hint = M.get_highlight("DiagnosticHint").fg,
+          diag_info = M.get_highlight("DiagnosticInfo").fg,
+          git_del = M.get_highlight("diffDeleted").fg,
+          git_add = M.get_highlight("diffAdded").fg,
+          git_change = M.get_highlight("diffChanged").fg,
         }
       end
 
