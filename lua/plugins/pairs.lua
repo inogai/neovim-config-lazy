@@ -28,13 +28,9 @@ return {
         "#5a7aaa",
       }
 
-      function prepare_hl_groups()
-        local rd1_id = vim.api.nvim_get_hl(0, { name = "RainbowDelimiter1", create = false })
-
-        if rd1_id == 0 then
-          for i, color in ipairs(default_colors) do
-            vim.nvim_set_hl(0, "RainbowDelimiter" .. i, { guifg = color })
-          end
+      local function prepare_hl_groups()
+        for i, color in ipairs(default_colors) do
+          vim.api.nvim_set_hl(0, "RainbowDelimiter" .. i, { fg = color })
         end
       end
 
