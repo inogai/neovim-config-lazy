@@ -18,6 +18,18 @@ if vim.g.vscode then
       "HiPhish/rainbow-delimiters.nvim",
       enabled = false,
     },
+    {
+      "nvim-lspconfig",
+      enabled = false,
+    },
+    {
+      "hrsh7th/nvim-cmp",
+      enabled = false,
+    },
+    {
+      "gorbit99/codewindow.nvim",
+      enabled = false,
+    },
   }
 end
 
