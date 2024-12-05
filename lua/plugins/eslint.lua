@@ -20,16 +20,16 @@ return {
     "neovim/nvim-lspconfig",
     init = function()
       local customizations = {
-        { rule = "style/*", severity = "off", fixable = true },
-        { rule = "format/*", severity = "off", fixable = true },
-        { rule = "*-indent", severity = "off", fixable = true },
-        { rule = "*-spacing", severity = "off", fixable = true },
-        { rule = "*-spaces", severity = "off", fixable = true },
-        { rule = "*-order", severity = "off", fixable = true },
-        { rule = "*-dangle", severity = "off", fixable = true },
-        { rule = "*-newline", severity = "off", fixable = true },
-        { rule = "*quotes", severity = "off", fixable = true },
-        { rule = "*semi", severity = "off", fixable = true },
+        --   { rule = "style/*", severity = "info", fixable = true },
+        --   { rule = "format/*", severity = "info", fixable = true },
+        --   { rule = "*-indent", severity = "info", fixable = true },
+        --   { rule = "*-spacing", severity = "info", fixable = true },
+        --   { rule = "*-spaces", severity = "info", fixable = true },
+        --   { rule = "*-order", severity = "info", fixable = true },
+        --   { rule = "*-dangle", severity = "info", fixable = true },
+        --   { rule = "*-newline", severity = "info", fixable = true },
+        --   { rule = "*quotes", severity = "info", fixable = true },
+        --   { rule = "*semi", severity = "info", fixable = true },
       }
 
       local lspconfig = require("lspconfig")
