@@ -29,10 +29,15 @@ return {
       {
         "<leader>gc",
         M.commit,
-
         desc = "Git [C]ommit",
       },
-      { "<leader>gl", LazyVim.lazygit.open, "[L]azyGit" },
+      {
+        "<leader>gl",
+        function()
+          Snacks.lazygit()
+        end,
+        "[L]azyGit",
+      },
     },
   },
 }
