@@ -115,6 +115,7 @@ return {
       local Icon = require("plugins.heirline.Icon")
       local Filename = require("plugins.heirline.Filename")
       local Diagnostics = require("plugins.heirline.Diagnostics")
+      local CurPos = require("plugins.heirline.CurPos")
       local Prose = require("plugins.heirline.Prose")
       local Navic = require("plugins.heirline.Navic")
 
@@ -138,6 +139,7 @@ return {
         Space,
         Diagnostics,
         Align,
+        CurPos,
         Prose,
       }
 
