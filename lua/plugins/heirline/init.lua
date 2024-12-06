@@ -24,6 +24,39 @@ function M.get_highlight(name)
   return ret
 end
 
+function M.setup_colors()
+  local ret = {
+    fg = M.get_highlight("Normal").fg,
+    bg = M.get_highlight("Normal").bg,
+
+    bg1 = M.get_highlight("StatusLine").bg,
+    fg1 = M.get_highlight("Normal").fg,
+
+    fg3 = M.get_highlight("StatusLine").fg,
+
+    bright_bg = M.get_highlight("Folded").bg,
+    bright_fg = M.get_highlight("Folded").fg,
+    red = M.get_highlight("DiagnosticError").fg,
+    dark_red = M.get_highlight("DiffDelete").bg,
+    green = M.get_highlight("String").fg,
+    blue = M.get_highlight("Directory").fg,
+    gray = M.get_highlight("NonText").fg,
+    yellow = M.get_highlight("DiagnosticWarn").fg,
+    orange = M.get_highlight("Constant").fg,
+    purple = M.get_highlight("Statement").fg,
+    cyan = M.get_highlight("Special").fg,
+    diag_warn = M.get_highlight("DiagnosticWarn").fg,
+    diag_error = M.get_highlight("DiagnosticError").fg,
+    diag_hint = M.get_highlight("DiagnosticHint").fg,
+    diag_info = M.get_highlight("DiagnosticInfo").fg,
+    git_del = M.get_highlight("diffDeleted").fg,
+    git_add = M.get_highlight("diffAdded").fg,
+    git_change = M.get_highlight("diffChanged").fg,
+  }
+
+  return ret
+end
+
 return {
   {
     "skwee357/nvim-prose",
@@ -53,44 +86,13 @@ return {
       local utils = require("heirline.utils")
       local conditions = require("heirline.conditions")
 
-      local function setup_colors()
-        return {
-          fg = M.get_highlight("Normal").fg,
-          bg = M.get_highlight("Normal").bg,
-
-          bg1 = M.get_highlight("StatusLine").bg,
-          fg1 = M.get_highlight("Normal").fg,
-
-          fg3 = M.get_highlight("StatusLine").fg,
-
-          bright_bg = M.get_highlight("Folded").bg,
-          bright_fg = M.get_highlight("Folded").fg,
-          red = M.get_highlight("DiagnosticError").fg,
-          dark_red = M.get_highlight("DiffDelete").bg,
-          green = M.get_highlight("String").fg,
-          blue = M.get_highlight("Directory").fg,
-          gray = M.get_highlight("NonText").fg,
-          yellow = M.get_highlight("DiagnosticWarn").fg,
-          orange = M.get_highlight("Constant").fg,
-          purple = M.get_highlight("Statement").fg,
-          cyan = M.get_highlight("Special").fg,
-          diag_warn = M.get_highlight("DiagnosticWarn").fg,
-          diag_error = M.get_highlight("DiagnosticError").fg,
-          diag_hint = M.get_highlight("DiagnosticHint").fg,
-          diag_info = M.get_highlight("DiagnosticInfo").fg,
-          git_del = M.get_highlight("diffDeleted").fg,
-          git_add = M.get_highlight("diffAdded").fg,
-          git_change = M.get_highlight("diffChanged").fg,
-        }
-      end
-
-      utils.on_colorscheme(setup_colors)
+      utils.on_colorscheme(M.setup_colors)
 
       vim.api.nvim_create_augroup("Heirline", { clear = true })
 
       vim.api.nvim_create_autocmd("ColorScheme", {
         callback = function()
-          utils.on_colorscheme(setup_colors)
+          utils.on_colorscheme(M.setup_colors)
         end,
         group = "Heirline",
       })
@@ -98,7 +100,7 @@ return {
       vim.api.nvim_create_autocmd("OptionSet", {
         pattern = "background",
         callback = function()
-          utils.on_colorscheme(setup_colors)
+          utils.on_colorscheme(M.setup_colors)
         end,
         group = "Heirline",
       })
