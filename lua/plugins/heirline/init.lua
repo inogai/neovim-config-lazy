@@ -54,6 +54,12 @@ function M.setup_colors()
     git_change = M.get_highlight("diffChanged").fg,
   }
 
+  -- Force disable gui options, like reverse
+  vim.api.nvim_set_hl(0, "StatusLine", {
+    fg = ret.fg3,
+    bg = ret.bg1,
+  })
+
   return ret
 end
 
