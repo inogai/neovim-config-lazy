@@ -40,9 +40,16 @@ return {
   },
 
   {
+    "snacks.nvim",
+    opts = {
+      indent = { enabled = false },
+    },
+  },
+
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    opts = function(_, old_opts)
+    opts = function()
       local highlight = {
         "RainbowDelimiter1",
         "RainbowDelimiter2",
@@ -54,7 +61,24 @@ return {
         scope = {
           highlight = highlight,
         },
-        exclude = old_opts.exclude,
+        exclude = {
+          filetypes = {
+            "Trouble",
+            "alpha",
+            "dashboard",
+            "help",
+            "lazy",
+            "mason",
+            "neo-tree",
+            "notify",
+            "snacks_dashboard",
+            "snacks_notif",
+            "snacks_terminal",
+            "snacks_win",
+            "toggleterm",
+            "trouble",
+          },
+        },
       }
 
       local hooks = require("ibl.hooks")
