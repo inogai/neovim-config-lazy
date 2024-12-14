@@ -15,5 +15,12 @@ return {
   },
   {
     "ellisonleao/gruvbox.nvim",
+
+    opts = {
+      overrides = {
+        SnacksDashboardIcon = { link = "Normal" },
+        SnacksDashboardDesc = { link = "Conceal" },
+      },
+    },
   },
 }
