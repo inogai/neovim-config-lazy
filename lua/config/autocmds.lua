@@ -17,9 +17,19 @@ autocmd("LspTokenUpdate", {
 })
 
 autocmd("BufEnter", {
-  callback = function()
-    LazyVim.info("cwd: " .. LazyVim.root())
-    vim.api.nvim_set_current_dir(LazyVim.root())
+  callback = function(args)
+    if vim.bo[args.buf].buftype == "nofile" then
+      return
+    end
+
+    local cwd = LazyVim.root(args.buf)
+
+    if vim.fn.getcwd() == cwd then
+      return
+    end
+
+    LazyVim.info("cwd: " .. cwd)
+    vim.api.nvim_set_current_dir(cwd)
   end,
 })
 
