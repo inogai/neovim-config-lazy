@@ -5,6 +5,7 @@
 local map = LazyVim.safe_keymap_set
 
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+map({ "i", "x", "n", "s" }, "<D-v>", "<cmd>p<cr><esc>", { desc = "Paste" })
 map({ "i", "x", "n", "s" }, "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 
 vim.keymap.set("x", "p", function()
