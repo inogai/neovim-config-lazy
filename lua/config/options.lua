@@ -36,8 +36,20 @@ local function diffview_detector(bufnr)
   return __diffview_detector_recursive(bufnr, 0)
 end
 
+local function parent_dir_detector(bufnr)
+  local bufname = vim.fn.bufname(bufnr)
+  return vim.fn.fnamemodify(bufname, ":h")
+end
+
 ---@type LazyRootSpec[]
-vim.g.root_spec = { ".obsidian", "lsp", { ".git", "lua" }, diffview_detector, "cwd" }
+vim.g.root_spec = {
+  ".obsidian",
+  "lsp",
+  { ".git", "lua" },
+  diffview_detector,
+  parent_dir_detector,
+  "cwd",
+}
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 
