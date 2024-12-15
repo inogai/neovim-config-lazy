@@ -15,3 +15,10 @@ autocmd("LspTokenUpdate", {
     end
   end,
 })
+
+autocmd("BufEnter", {
+  callback = function()
+    LazyVim.info("cwd: " .. LazyVim.root())
+    vim.api.nvim_set_current_dir(LazyVim.root())
+  end,
+})
