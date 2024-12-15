@@ -7,15 +7,20 @@ end
 return {
   {
     "folke/snacks.nvim",
-    opts = {
-      dashboard = {
-        enabled = true,
+    opts = function(_, opts)
+      vim.api.nvim_create_user_command("Dashboard", function()
+        Snacks.dashboard.open()
+      end, {})
 
-        wo = {
-          winhighlight = "Normal:SnacksDashboardNormal,NormalFloat:SnacksDashboardNormal,Normal:SnacksDashboardDesc",
-        },
+      opts = vim.tbl_deep_extend("force", opts, {
+        dashboard = {
+          enabled = true,
 
-        preset = {
+          wo = {
+            winhighlight = "Normal:SnacksDashboardNormal,NormalFloat:SnacksDashboardNormal,Normal:SnacksDashboardDesc",
+          },
+
+          preset = {
           -- stylua: ignore
           keys = {
             { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
@@ -30,31 +35,34 @@ return {
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
-        },
+          },
 
-        sections = {
-          {
-            pane = 1,
+          sections = {
             {
-              section = "terminal",
-              cmd = "cat " .. vim.fn.stdpath("config") .. "/asciiart/noah_" .. vim.o.background .. ".txt",
-              height = 18,
-              width = 40,
-              padding = 1,
+              pane = 1,
+              {
+                section = "terminal",
+                cmd = "cat " .. vim.fn.stdpath("config") .. "/asciiart/noah_" .. vim.o.background .. ".txt",
+                height = 18,
+                width = 40,
+                padding = 1,
+              },
+              -- {
+              --   section = "terminal",
+              --   cmd = [[curl -fsSL https://international.v1.hitokoto.cn | jq -Mcr '[.hitokoto,.from,.from_who] | join(" ")' | awk '{print"『"$1"』—— "$2" "$3}']],
+              -- },
             },
-            -- {
-            --   section = "terminal",
-            --   cmd = [[curl -fsSL https://international.v1.hitokoto.cn | jq -Mcr '[.hitokoto,.from,.from_who] | join(" ")' | awk '{print"『"$1"』—— "$2" "$3}']],
-            -- },
-          },
 
-          {
-            pane = 2,
-            { section = "keys", gap = 1, padding = 1 },
-            { section = "startup" },
+            {
+              pane = 2,
+              { section = "keys", gap = 1, padding = 1 },
+              { section = "startup" },
+            },
           },
         },
-      },
-    },
+      })
+
+      return opts
+    end,
   },
 }
