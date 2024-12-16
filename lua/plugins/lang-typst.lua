@@ -45,6 +45,14 @@ return {
       formatters_by_ft = {
         typst = { "typstyle" },
       },
+      formatter = {
+        typstyle = {
+          prepend_arg = {
+            "-c",
+            "60",
+          },
+        },
+      },
     },
   },
 }

@@ -1,4 +1,4 @@
-local M = require("plugins.git.utils")
+local M = require("plugins.compat-git.utils")
 
 return {
   "sindrets/diffview.nvim",

@@ -1,8 +1,8 @@
-local M = require("plugins.git.utils")
+local M = require("plugins.compat-git.utils")
 
 return {
-  require("plugins.git.conflict"),
-  require("plugins.git.diffview"),
+  require("plugins.compat-git.conflict"),
+  require("plugins.compat-git.diffview"),
   {
     "NeogitOrg/neogit",
     dependencies = {
