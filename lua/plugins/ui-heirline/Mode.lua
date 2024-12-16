@@ -1,4 +1,4 @@
-local symbols = require("plugins.heirline.symbols")
+local symbols = require("plugins.ui-heirline.symbols")
 
 ---@alias mode "NORMAL" | "O-PENDING" | "VISUAL" | "V-LINE" | "V-BLOCK" | "SELECT" | "S-LINE" | "S-BLOCK" | "INSERT" | "REPLACE" | "V-REPLACE" | "COMMAND" | "EX" | "MORE" | "CONFIRM" | "SHELL" | "TERMINAL"
 

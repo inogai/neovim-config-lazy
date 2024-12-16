@@ -111,13 +111,17 @@ return {
         group = "Heirline",
       })
 
-      local Mode = require("plugins.heirline.Mode")
-      local Icon = require("plugins.heirline.Icon")
-      local Filename = require("plugins.heirline.Filename")
-      local Diagnostics = require("plugins.heirline.Diagnostics")
-      local CurPos = require("plugins.heirline.CurPos")
-      local Prose = require("plugins.heirline.Prose")
-      local Navic = require("plugins.heirline.Navic")
+      local function submod(modname)
+        return require("plugins.ui-heirline" .. modname)
+      end
+
+      local Mode = submod(".Mode")
+      local Icon = submod(".Icon")
+      local Filename = submod(".Filename")
+      local Diagnostics = submod(".Diagnostics")
+      local CurPos = submod(".CurPos")
+      local Prose = submod(".Prose")
+      local Navic = submod(".Navic")
 
       local ModifiedIndicator = {
         condition = function()
