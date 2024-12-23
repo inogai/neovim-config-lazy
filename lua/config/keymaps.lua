@@ -10,6 +10,8 @@ map({ "t" }, "<D-v>", "<C-\\><C-n>p`]a", { desc = "Paste" })
 
 map({ "i", "x", "n", "s" }, "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 
+map({ "t" }, "<Esc><Esc>", "<C-\\><C-N>")
+
 vim.keymap.set("x", "p", function()
   return 'pgv"' .. vim.v.register .. "y"
 end, { remap = false, expr = true })
