@@ -5,8 +5,8 @@
 local map = LazyVim.safe_keymap_set
 
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-map({ "i" }, "<D-v>", "<esc>p`]a", { desc = "Paste" })
-map({ "t" }, "<D-v>", "<C-\\><C-n>p`]a", { desc = "Paste" })
+map({ "i" }, "<D-v>", "<C-r>+", { desc = "Paste" })
+map({ "t" }, "<D-v>", '<C-\\><C-o>"+p', { desc = "Paste" })
 
 map({ "i", "x", "n", "s" }, "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 
