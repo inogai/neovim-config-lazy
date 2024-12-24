@@ -27,7 +27,7 @@ return {
     end,
     cmd = { "ToggleTerm", "TermExec" },
     keys = {
-      { "<C-/>", ctrl_slash },
+      { "<C-/>", ctrl_slash, mode = { "n", "t" } },
     },
     opts = {
       shade_terminals = false,
