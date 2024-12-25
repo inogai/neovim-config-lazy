@@ -66,5 +66,19 @@ return {
         },
       })
     end,
+    opts = {
+      servers = {
+        vtsls = {
+          settings = {
+            typescript = {
+              preferences = {
+                importModuleSpecifier = "non-relative",
+                importModuleSpecifierEnding = "js",
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }
