@@ -90,7 +90,7 @@ return {
   },
   {
     "rebelot/heirline.nvim",
-    config = function()
+    opts = function(_, opts)
       local utils = require("heirline.utils")
       local conditions = require("heirline.conditions")
 
@@ -156,11 +156,8 @@ return {
 
       -- LazyVim.info(vim.inspect(StatusLine))
 
-      require("heirline").setup({
-        statusline = StatusLine,
-        winbar = Winbar,
-        -- tabline = TabLine,
-        -- statuscolumn = StatusColumn
+      -- Extend the options
+      opts = vim.tbl_deep_extend("force", opts or {}, {
         opts = {
           disable_winbar_cb = function(args)
             return conditions.buffer_matches({
@@ -170,6 +167,14 @@ return {
           end,
         },
       })
+
+      -- Overwrite the components
+      opts.statusline = StatusLine
+      opts.winbar = Winbar
+      opts.tabline = nil
+      opts.statuscolumn = nil
+
+      return opts
     end,
   },
 }
