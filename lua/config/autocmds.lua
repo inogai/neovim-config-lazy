@@ -6,6 +6,10 @@ local autocmd = vim.api.nvim_create_autocmd
 
 require("config.snippets.mini-files_git_integration")
 
+vim.api.nvim_set_hl(0, "MyMutableVariableHighlight", {
+  underline = true,
+})
+
 autocmd("LspTokenUpdate", {
   callback = function(args)
     local token = args.data.token
