@@ -28,7 +28,13 @@ autocmd("BufEnter", {
 
     local cwd = LazyVim.root(args.buf)
 
-    if vim.fn.getcwd() == cwd then
+    if not vim.fn.isdirectory(cwd) then
+      return
+    end
+
+    local current_cwd = vim.fn.getcwd()
+
+    if cwd == current_cwd or cwd == current_cwd .. "/" then
       return
     end
 
