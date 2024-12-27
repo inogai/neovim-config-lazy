@@ -4,6 +4,20 @@ local function pick_file(cwd)
   end
 end
 
+local hlgroups = {
+  SnacksDashboardNormal = "Normal", -- Normal for the dashboard
+  SnacksDashboardDesc = "Conceal", -- Description text in dashboard
+  SnacksDashboardFile = "Conceal", -- Dashboard file items
+  SnacksDashboardDir = "NonText", -- Directory items
+  SnacksDashboardFooter = "String", -- Dashboard footer text
+  SnacksDashboardHeader = "Title", -- Dashboard header text
+  SnacksDashboardIcon = "Normal", -- Dashboard icons
+  SnacksDashboardKey = "Statement", -- Keybind text
+  SnacksDashboardTerminal = "Normal", -- Terminal text
+  SnacksDashboardSpecial = "Statement", -- Special elements
+  SnacksDashboardTitle = "Title", -- Title text
+}
+
 return {
   {
     "folke/snacks.nvim",
@@ -12,13 +26,13 @@ return {
         Snacks.dashboard.open()
       end, {})
 
+      for hlgroup, target in pairs(hlgroups) do
+        vim.api.nvim_set_hl(0, hlgroup, { link = target })
+      end
+
       opts = vim.tbl_deep_extend("force", opts, {
         dashboard = {
           enabled = true,
-
-          wo = {
-            winhighlight = "Normal:SnacksDashboardNormal,NormalFloat:SnacksDashboardNormal,Normal:SnacksDashboardDesc",
-          },
 
           preset = {
           -- stylua: ignore
