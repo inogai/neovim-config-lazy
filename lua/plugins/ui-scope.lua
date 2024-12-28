@@ -63,20 +63,13 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = function()
-      local highlight = {
-        "RainbowDelimiter1",
-        "RainbowDelimiter2",
-        "RainbowDelimiter3",
-        "RainbowDelimiter4",
-      }
-
       local opts = {
         indent = {
           priority = 1,
         },
         scope = {
           priority = 1024,
-          highlight = highlight,
+          highlight = get_hl_group_names(),
         },
         exclude = {
           filetypes = {
