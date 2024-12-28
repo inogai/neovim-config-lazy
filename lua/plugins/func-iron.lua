@@ -2,9 +2,7 @@ return {
   {
     "Vigemus/iron.nvim",
     cmd = "IronRepl",
-    config = function(_, opts)
-      require("iron.core").setup(opts)
-    end,
+    main = "iron.core",
     opts = function(_, opts)
       return {
         config = {
