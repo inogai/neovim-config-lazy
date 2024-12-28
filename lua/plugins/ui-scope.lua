@@ -47,6 +47,16 @@ return {
   },
 
   {
+    "echasnovski/mini.indentscope",
+    opts = function(_, opts)
+      vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#c79652" })
+      return {
+        symbol = "▎",
+      }
+    end,
+  },
+
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = function()
