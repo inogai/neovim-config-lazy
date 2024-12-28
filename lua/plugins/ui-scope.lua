@@ -24,7 +24,8 @@ end
 return {
   {
     "HiPhish/rainbow-delimiters.nvim",
-    config = function()
+    main = "rainbow-delimiters.setup",
+    opts = function()
       vim.api.nvim_create_autocmd("ColorScheme", {
         callback = prepare_hl_groups,
       })
@@ -33,7 +34,8 @@ return {
 
       ---@module "rainbow-delimiters"
       ---@type rainbow_delimiters.config
-      vim.g.rainbow_delimiters = {
+
+      return {
         highlight = get_hl_group_names(),
       }
     end,
