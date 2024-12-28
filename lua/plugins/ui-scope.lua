@@ -63,6 +63,14 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = function()
+      local hooks = require("ibl.hooks")
+
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        prepare_hl_groups()
+      end)
+
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
       local opts = {
         indent = {
           priority = 1,
@@ -90,14 +98,6 @@ return {
           },
         },
       }
-
-      local hooks = require("ibl.hooks")
-
-      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        prepare_hl_groups()
-      end)
-
-      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
       return opts
     end,
