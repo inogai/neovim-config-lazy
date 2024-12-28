@@ -51,9 +51,9 @@ function M.setup_colors()
     diag_error = M.get_highlight("DiagnosticError").fg,
     diag_hint = M.get_highlight("DiagnosticHint").fg,
     diag_info = M.get_highlight("DiagnosticInfo").fg,
-    git_del = M.get_highlight("diffDeleted").fg,
-    git_add = M.get_highlight("diffAdded").fg,
-    git_change = M.get_highlight("diffChanged").fg,
+    git_del = M.get_highlight("DiffDelete").fg,
+    git_add = M.get_highlight("DiffAdd").fg,
+    git_change = M.get_highlight("DiffChange").fg,
   }
 
   -- Force disable gui options, like reverse
@@ -122,6 +122,7 @@ return {
       local CurPos = submod(".CurPos")
       local Prose = submod(".Prose")
       local Navic = submod(".Navic")
+      local Git = submod(".Git")
 
       local ModifiedIndicator = {
         condition = function()
@@ -136,6 +137,8 @@ return {
 
       local StatusLine = {
         Mode,
+        Space,
+        Git,
         Space,
         Icon,
         ModifiedIndicator,
