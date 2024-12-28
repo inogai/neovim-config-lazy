@@ -51,6 +51,7 @@ return {
     opts = function(_, opts)
       vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#c79652" })
       return {
+        draw = { priority = 2 },
         symbol = "▎",
       }
     end,
@@ -68,7 +69,11 @@ return {
       }
 
       local opts = {
+        indent = {
+          priority = 1,
+        },
         scope = {
+          priority = 1024,
           highlight = highlight,
         },
         exclude = {
