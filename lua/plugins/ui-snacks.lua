@@ -56,7 +56,7 @@ return {
               pane = 1,
               {
                 section = "terminal",
-                cmd = "cat " .. vim.fn.stdpath("config") .. "/asciiart/noah_" .. vim.o.background .. ".txt",
+                cmd = vim.fn.stdpath("config") .. "/asciiart/random.sh " .. vim.o.background,
                 height = 18,
                 width = 40,
                 padding = 1,
