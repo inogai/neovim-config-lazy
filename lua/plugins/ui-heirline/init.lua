@@ -119,10 +119,10 @@ return {
       local Icon = submod(".Icon")
       local Filename = submod(".Filename")
       local Diagnostics = submod(".Diagnostics")
-      local CurPos = submod(".CurPos")
       local Prose = submod(".Prose")
       local Navic = submod(".Navic")
       local Git = submod(".Git")
+      local Ruler = submod(".components.Ruler")
 
       local ModifiedIndicator = {
         condition = function()
@@ -146,7 +146,7 @@ return {
         Space,
         Diagnostics,
         Align,
-        CurPos,
+        Ruler,
         Prose,
       }
 
