@@ -115,22 +115,17 @@ return {
         return require("plugins.ui-heirline" .. modname)
       end
 
+      ---@param component string
+      local function h(component)
+        return require("plugins.ui-heirline.components." .. component)
+      end
+
       local Mode = submod(".Mode")
       local Icon = submod(".Icon")
       local Filename = submod(".Filename")
       local Diagnostics = submod(".Diagnostics")
       local Prose = submod(".Prose")
       local Navic = submod(".Navic")
-      local Git = submod(".Git")
-      local Ruler = submod(".components.Ruler")
-
-      local ModifiedIndicator = {
-        condition = function()
-          return vim.bo.modifiable and vim.bo.modified
-        end,
-        update = { "InsertLeave", "TextChanged" },
-        provider = "*",
-      }
 
       local Align = { provider = "%=" }
       local Space = { provider = " " }
@@ -138,15 +133,15 @@ return {
       local StatusLine = {
         Mode,
         Space,
-        Git,
+        h("Git"),
         Space,
         Icon,
-        ModifiedIndicator,
+        h("Modified"),
         Filename,
         Space,
         Diagnostics,
         Align,
-        Ruler,
+        h("Ruler"),
         Prose,
       }
 
