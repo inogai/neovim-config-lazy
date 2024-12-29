@@ -29,7 +29,7 @@ local Diagnostics = {
         return table.concat({ self.error_icon, self.errors, " " })
       end
     end,
-    hl = { fg = "red" },
+    hl = { fg = "diag_error" },
   },
 
   {
@@ -38,7 +38,7 @@ local Diagnostics = {
         return table.concat({ self.warn_icon, self.warnings, " " })
       end
     end,
-    hl = { fg = "yellow" },
+    hl = { fg = "diag_warn" },
   },
 
   {
@@ -47,7 +47,7 @@ local Diagnostics = {
         return table.concat({ self.info_icon, self.info, " " })
       end
     end,
-    hl = { fg = "blue" },
+    hl = { fg = "diag_info" },
   },
 
   {
@@ -56,7 +56,7 @@ local Diagnostics = {
         return table.concat({ self.hint_icon, self.hints, " " })
       end
     end,
-    hl = { fg = "green" },
+    hl = { fg = "diag_hint" },
   },
 }
 
