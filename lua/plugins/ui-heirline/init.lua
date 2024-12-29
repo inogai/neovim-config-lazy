@@ -117,26 +117,32 @@ return {
       end
 
       local Align = { provider = "%=" }
-      local Space = { provider = " " }
+      ---@param count number
+      local sp = function(count)
+        return { provider = (" "):rep(count) }
+      end
+      local s = sp(1)
 
       local StatusLine = {
         h("Mode"),
-        Space,
+        s,
         h("Git"),
-        Space,
+        s,
         h("Icon"),
         h("Modified"),
         h("Filename"),
-        Space,
+        s,
         h("Diagnostics"),
+
         Align,
+
         h("Ruler"),
-        Space,
+        s,
         h("Prose"),
       }
 
       local Winbar = {
-        { provider = "       " },
+        sp(7),
         h("Navic"),
       }
 
