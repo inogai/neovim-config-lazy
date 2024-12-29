@@ -124,7 +124,6 @@ return {
       local Icon = submod(".Icon")
       local Filename = submod(".Filename")
       local Diagnostics = submod(".Diagnostics")
-      local Prose = submod(".Prose")
       local Navic = submod(".Navic")
 
       local Align = { provider = "%=" }
@@ -142,7 +141,8 @@ return {
         Diagnostics,
         Align,
         h("Ruler"),
-        Prose,
+        Space,
+        h("Prose"),
       }
 
       local Winbar = {
