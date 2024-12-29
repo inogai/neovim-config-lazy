@@ -100,8 +100,6 @@ local Size = {
 local Filename = {
   ---@param self MyHeirline.Filename.Self
   init = function(self)
-    local plpath = require("plenary.path")
-
     self._root = LazyVim.root()
     self._file = vim.fn.expand("%:p")
   end,
