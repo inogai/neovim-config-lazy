@@ -14,7 +14,7 @@ local Git = {
 
   hl = { fg = "fg3" },
 
-  update = { "BufEnter", "TextChanged" },
+  update = { "BufEnter", "TextChanged", "TextChangedI", "BufWritePost" },
 
   { -- git branch name
     provider = function(self)

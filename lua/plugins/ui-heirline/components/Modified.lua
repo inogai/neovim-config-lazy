@@ -2,7 +2,7 @@ local ModifiedIndicator = {
   condition = function()
     return vim.bo.modifiable and vim.bo.modified
   end,
-  update = { "InsertLeave", "TextChanged" },
+  update = { "BufEnter", "TextChanged", "TextChangedI", "BufWritePost" },
   provider = "*",
 }
 
