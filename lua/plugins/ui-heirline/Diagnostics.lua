@@ -20,6 +20,8 @@ local Diagnostics = {
 
   hl = { bg = "bg1" },
 
+  update = { "BufEnter", "TextChanged" },
+
   {
     provider = function(self)
       -- 0 is just another output, we can decide to print it or not!
