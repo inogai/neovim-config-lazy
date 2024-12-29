@@ -111,33 +111,24 @@ return {
         group = "Heirline",
       })
 
-      local function submod(modname)
-        return require("plugins.ui-heirline" .. modname)
-      end
-
       ---@param component string
       local function h(component)
         return require("plugins.ui-heirline.components." .. component)
       end
 
-      local Mode = submod(".Mode")
-      local Icon = submod(".Icon")
-      local Filename = submod(".Filename")
-      local Diagnostics = submod(".Diagnostics")
-
       local Align = { provider = "%=" }
       local Space = { provider = " " }
 
       local StatusLine = {
-        Mode,
+        h("Mode"),
         Space,
         h("Git"),
         Space,
-        Icon,
+        h("Icon"),
         h("Modified"),
-        Filename,
+        h("Filename"),
         Space,
-        Diagnostics,
+        h("Diagnostics"),
         Align,
         h("Ruler"),
         Space,
