@@ -17,6 +17,12 @@ return {
       },
     }
 
+    vim.api.nvim_set_hl(0, "MyDiffDeletedLines", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "MyDiffTextFrom", { bg = "#6d4443" })
+    vim.api.nvim_set_hl(0, "MyDiffChangeFrom", { bg = "#4a3433" })
+    vim.api.nvim_set_hl(0, "MyDiffTextTo", { bg = "#3a5247" })
+    vim.api.nvim_set_hl(0, "MyDiffChangeTo", { bg = "#2e3b36" })
+
     return {
       enhanced_diff_hl = true,
 
@@ -63,6 +69,7 @@ return {
               }, ",")
             elseif ctx.symbol == "b" then
               vim.opt_local.winhl = table.concat({
+                "DiffAdd:MyDiffChangeTo",
                 "DiffDelete:MyDiffDeletedLines",
                 "DiffChange:MyDiffChangeTo",
                 "DiffText:MyDiffTextTo",
