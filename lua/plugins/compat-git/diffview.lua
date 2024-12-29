@@ -9,12 +9,7 @@ return {
 
     local km = {
       { { "n" }, "q", "<Cmd>DiffviewClose<CR>", { desc = "[Q]uit Diffview" } },
-      {
-        { "n" },
-        "c",
-        M.commit,
-        { desc = "Git [C]ommit" },
-      },
+      { { "n" }, "c", M.commit, { desc = "Git [C]ommit" } },
     }
 
     vim.api.nvim_set_hl(0, "MyDiffDeletedLines", { link = "NonText" })
