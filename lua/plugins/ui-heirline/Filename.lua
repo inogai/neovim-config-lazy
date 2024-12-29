@@ -86,9 +86,9 @@ local Size = {
   provider = function(self)
     local nr = vim.fn.getfsize(self._file)
     local magnitude = 1
-    local unit_map = { "B", "kB", "MB", "GB", "TB" }
+    local unit_map = { "B", "k", "M", "G", "T" }
     while nr >= 100 do
-      nr = nr / 1000
+      nr = nr / 1024
       magnitude = magnitude + 1
     end
     local nr_str = string.format("%.2f", nr)
