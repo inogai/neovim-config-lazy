@@ -2,7 +2,8 @@ local M = require("plugins.compat-git.utils")
 
 return {
   "sindrets/diffview.nvim",
-  config = function()
+
+  opts = function()
     local actions = require("diffview.actions")
     local unpack = unpack or table.unpack
 
@@ -16,7 +17,7 @@ return {
       },
     }
 
-    require("diffview").setup({
+    return {
       enhanced_diff_hl = true,
 
       file_panel = {
@@ -70,8 +71,9 @@ return {
           end
         end,
       },
-    })
+    }
   end,
+
   keys = {
     { "<leader>gg", "<cmd>DiffviewOpen<CR>", desc = "[G]it Diffview" },
   },
