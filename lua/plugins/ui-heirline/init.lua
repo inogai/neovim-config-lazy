@@ -136,9 +136,9 @@ return {
 
         Align,
 
-        h("Ruler"),
-        s,
         h("Prose"),
+        s,
+        h("Ruler"),
       }
 
       local Winbar = {
