@@ -124,7 +124,6 @@ return {
       local Icon = submod(".Icon")
       local Filename = submod(".Filename")
       local Diagnostics = submod(".Diagnostics")
-      local Navic = submod(".Navic")
 
       local Align = { provider = "%=" }
       local Space = { provider = " " }
@@ -147,7 +146,7 @@ return {
 
       local Winbar = {
         { provider = "       " },
-        Navic,
+        h("Navic"),
       }
 
       -- LazyVim.info(vim.inspect(StatusLine))
