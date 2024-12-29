@@ -1,5 +1,56 @@
 local M = require("plugins.compat-git.utils")
 
+local M2 = {}
+
+---@param line string
+---@return string
+function M2.extract_filename(line)
+  local start = line:find("%s") or 1
+  local terminal = line:find("%s", start + 1) or start
+  terminal = line:find("%s", terminal + 1) or -1
+
+  local ret = line:sub(start, terminal)
+  return ret
+end
+
+---@param target string -  Target filename
+---@return number | nil - an 1-based index of the 1st-matched line, or nil if not found
+function M2.find_filename_line(target)
+  local lines = vim.api.nvim_buf_get_lines(0, 0, vim.api.nvim_buf_line_count(0), false)
+  for i, line in ipairs(lines) do
+    local cont = M2.extract_filename(line)
+    if cont == target then
+      return i
+    end
+  end
+
+  return nil
+end
+
+function M2.toggle_stage_entry_follow()
+  local actions = require("diffview.actions")
+  local current_line = vim.api.nvim_get_current_line()
+  local current_file = M2.extract_filename(current_line)
+  actions.toggle_stage_entry()
+
+  local timer = vim.uv.new_timer()
+  if timer == nil then
+    return
+  end
+  timer:start(
+    100,
+    0,
+    vim.schedule_wrap(function()
+      local line_nr = M2.find_filename_line(current_file)
+
+      if line_nr ~= nil then
+        vim.api.nvim_win_set_cursor(0, { line_nr, 1 })
+        actions.select_entry()
+      end
+    end)
+  )
+end
+
 return {
   "sindrets/diffview.nvim",
 
@@ -38,7 +89,7 @@ return {
           { "n", "<up>", actions.select_prev_entry },
           { "n", "j", actions.select_next_entry },
           { "n", "k", actions.select_prev_entry },
-          { "n", "s", actions.toggle_stage_entry, { desc = "Stage File" } },
+          { "n", "s", M2.toggle_stage_entry_follow, { desc = "Stage File" } },
           unpack(km),
         },
         file_history_panel = {
