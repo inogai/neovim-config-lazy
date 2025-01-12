@@ -126,8 +126,8 @@ return {
       local StatusLine = {
         h("Mode"),
         s,
-        h("Git"),
-        s,
+        -- h("Git"),
+        -- s,
         h("Icon"),
         h("Modified"),
         h("Filename"),
