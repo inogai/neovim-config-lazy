@@ -3,6 +3,7 @@ local M = require("plugins.compat-git.utils")
 return {
   require("plugins.compat-git.conflict"),
   require("plugins.compat-git.diffview"),
+  unpack(require("plugins.compat-git.gitsigns")),
   {
     "NeogitOrg/neogit",
     dependencies = {
